@@ -102,3 +102,14 @@ int main()
    
     return 0;
 }
+
+
+/*
+  If we have to implement stack using two queue then we have to follow some procedures
+
+  make q1 and q2
+
+  1. push -> q2
+  2. push all elements of q1 -> q2
+  3. swap(q1,q2);
+*/
