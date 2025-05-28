@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stack>
 #include<string>
+#include<algorithm>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int precedence(char op){
 }
 
 
-string infixToPostfix(string exp){
+string infixToPrefix(string exp){
     stack<char> st;
     int i = 0;
     string ans = "";
@@ -35,20 +36,30 @@ string infixToPostfix(string exp){
             st.pop();
         } else{
             // Pop operator from stack with higher or equal precedence
-            while(!st.empty() && precedence(st.top()) >= precedence(exp[i])){
-                ans += st.top();
-                st.pop();
+
+            if(exp[i] == '^'){
+                while(!st.empty() && precedence(exp[i]) <= precedence(st.top())){
+                    ans += st.top();
+                    st.pop();
+                }
+            } else {
+                while(!st.empty() && precedence(st.top()) > precedence(exp[i])){
+                    ans += st.top();
+                    st.pop();
+                }
             }
             st.push(exp[i]);
         }
         i++;
-    }
+    } //A + (B - C) * D ^ E ^ F / G
 
     // If there is anything left in stack pop it and print it
     while(!st.empty()){
         ans += st.top();
         st.pop();
     }
+
+    reverse(ans.begin(),ans.end());
 
     return ans;
 }
@@ -61,6 +72,14 @@ int main(){
     cout << "Enter an infix expression: ";
     cin >> infix;
 
-    cout << "Postfix: " << infixToPostfix(infix);
+    reverse(infix.begin(), infix.end());
+
+    // Step 2: Swap '(' with ')' and vice versa
+    for (int i = 0; i < infix.size(); i++) {
+        if (infix[i] == '(') infix[i] = ')';
+        else if (infix[i] == ')') infix[i] = '(';
+    }
+
+    cout << "Prefix: " << infixToPrefix(infix);
     return 0;
 }
