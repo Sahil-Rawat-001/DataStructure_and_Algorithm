@@ -1,5 +1,5 @@
 // Why merge sort over bubble sort, selection sort and insertion sort ?
-// because the time complexity is goes down to the O(nlogn);
+// because the time complexity is goes down to the O(nlogbase2n);
 // It is much more optimized sorting algorithm and sort any kind of data.
 // Concept of merge sort - divide and merge
 
