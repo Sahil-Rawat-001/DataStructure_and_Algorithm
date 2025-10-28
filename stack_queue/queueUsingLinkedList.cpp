@@ -4,14 +4,14 @@ using namespace std;
 
 
 // structure of Node
-class Node{
+class TreeNode{
 
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
     // constructor
-    Node(int value){
+    TreeNode(int value){
         data = value;
         next = nullptr;
     }
@@ -22,8 +22,8 @@ class Node{
 class QueueImpl{
 
     private:
-       Node* front;
-       Node* rear;
+       TreeNode* front;
+       TreeNode* rear;
        int size = 0;
 
     public:
@@ -34,7 +34,7 @@ class QueueImpl{
       // Enqueue: add to rear
 
       void enqueue(int value){
-        Node* newNode = new Node(value);
+        TreeNode* newNode = new TreeNode(value);
 
         if(front == nullptr){
             front = rear = newNode;
@@ -51,7 +51,7 @@ class QueueImpl{
         if(front == nullptr){
             cout << "Underflow: queue is empty." << endl;
         }
-        Node* temp = front;
+        TreeNode* temp = front;
         front = front -> next;
         delete temp;
         size -= 1;
@@ -68,7 +68,7 @@ class QueueImpl{
 
       void display(){
         if(front == nullptr)  cout << "Underflow: queue is empty." << endl;
-        Node* temp = front;
+        TreeNode* temp = front;
 
         while(temp != nullptr){
           cout << temp ->data << " ";

@@ -7,11 +7,11 @@ using namespace std;
 
 
 // Node Structure
-class Node{
+class TreeNode{
 
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
 
     /*
@@ -26,7 +26,7 @@ class Node{
     */
 
     // constructor 
-    Node(int value){
+    TreeNode(int value){
         data = value;
         next = nullptr;
     }
@@ -36,7 +36,7 @@ class Node{
 class Stack{
 
     private:
-       Node* top;
+       TreeNode* top;
        int size = 0;
 
     public:
@@ -45,7 +45,7 @@ class Stack{
       }
 
       void push(int value){
-        Node* newNode = new Node(value);
+        TreeNode* newNode = new TreeNode(value);
         newNode -> next = top;
         top = newNode;
         size += 1;
@@ -55,7 +55,7 @@ class Stack{
         if(top == nullptr){
           cout << "UnderFlow: Stack is empty." << endl;
         } else{
-          Node* temp = top;
+          TreeNode* temp = top;
           top = top -> next;
           delete temp;
           size -= 1;
@@ -73,7 +73,7 @@ class Stack{
         if(top == nullptr){
           cout <<  "UnderFlow: Stack is empty." << endl;
         }
-        Node* temp = top;
+        TreeNode* temp = top;
 
         while(temp != nullptr){
           cout << temp -> data << " ";
